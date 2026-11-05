@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PayNest</title>
+<meta name="theme-color" content="#0b0a12">
+<meta name="description" content="PayNest — payments, recharges and bills. Demo build.">
+<script>
+/* Apply the saved theme before first paint to avoid a flash. */
+try{var s=JSON.parse(localStorage.getItem("paynest.app.v1")||"null");if(s&&s.prefs&&s.prefs.theme==="light")document.documentElement.dataset.theme="light"}catch(e){}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+<div class="app" id="app">
+  <div id="view"></div>
+  <nav class="nav hide" id="nav" aria-label="Main">
+    <div class="nav-in">
+      <button data-r="home" aria-label="Home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button>
+      <button data-r="history" aria-label="History"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>History</button>
+      <button class="fab" data-r="scan" aria-label="Scan and pay"><span class="c"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3"/><path d="M4 12h16"/></svg></span></button>
+      <button data-r="bills" aria-label="Bills"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Bills</button>
+      <button data-r="profile" aria-label="Profile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</button>
+    </div>
+  </nav>
+  <div class="msbd" id="msbd"></div>
+  <div class="msheet" id="msheet" role="dialog" aria-modal="true"></div>
+  <div class="toast" id="toast" role="status"></div>
+</div>
+<noscript>PayNest needs JavaScript to run.</noscript>
+
+<!-- Classic scripts (no build step, works from file:// and GitHub Pages). Order matters. -->
+<script defer src="js/core/config.js"></script>
+<script defer src="js/core/utils.js"></script>
+<script defer src="js/core/store.js"></script>
+<script defer src="js/core/api.js"></script>
+<script defer src="js/core/ui.js"></script>
+<script defer src="js/core/router.js"></script>
+<script defer src="js/screens/splash.js"></script>
+<script defer src="js/screens/login.js"></script>
+<script defer src="js/screens/signup.js"></script>
+<script defer src="js/screens/otp.js"></script>
+<script defer src="js/screens/pin.js"></script>
+<script defer src="js/screens/home.js"></script>
+<script defer src="js/screens/history.js"></script>
+<script defer src="js/screens/scan.js"></script>
+<script defer src="js/screens/bills.js"></script>
+<script defer src="js/screens/profile.js"></script>
+<script defer src="js/main.js"></script>
+</body>
+</html>

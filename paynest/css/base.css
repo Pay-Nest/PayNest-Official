@@ -1,0 +1,50 @@
+/* Reset, app shell, screen transitions, ambient background. */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--page);color:var(--ink);display:flex;justify-content:center;overflow:hidden;touch-action:manipulation;-webkit-font-smoothing:antialiased;transition:background .3s}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input{font:inherit;color:inherit}
+a{color:inherit}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:8px}
+svg{pointer-events:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.app{position:relative;width:100%;max-width:430px;height:100vh;height:100dvh;background:var(--bg);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.35);transition:background .3s}
+#view{position:absolute;inset:0}
+.screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;background:var(--bg);transition:background .3s}
+.screen::-webkit-scrollbar{display:none}
+.screen.has-nav{padding-bottom:calc(var(--nav-h) + var(--safe-b) + 28px)}
+.enter-fwd{animation:inFwd .44s var(--ease) both}
+.leave-fwd{animation:outFwd .34s var(--ease) both;pointer-events:none}
+.enter-back{animation:inBack .44s var(--ease) both}
+.leave-back{animation:outBack .34s var(--ease) both;pointer-events:none}
+.enter-fade{animation:fadeIn .32s ease both}
+.leave-fade{animation:fadeOut .2s ease both;pointer-events:none}
+@keyframes inFwd{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+@keyframes outFwd{to{opacity:0;transform:translateX(-20px)}}
+@keyframes inBack{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+@keyframes outBack{to{opacity:0;transform:translateX(20px)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeOut{to{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes shim{to{background-position:-200% 0}}
+.shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97)}
+.stagger>*{opacity:0;animation:rise .6s var(--ease) both;animation-delay:calc(var(--i,0) * 70ms + 80ms)}
+
+/* ambient aurora (same language as the payment status page) */
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.aurora::after{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:18px 18px;-webkit-mask-image:linear-gradient(#000,transparent 80%);mask-image:linear-gradient(#000,transparent 80%)}
+.blob{position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(64px);opacity:var(--blob)}
+.b1{background:var(--brand);top:-110px;left:-90px;animation:d1 16s ease-in-out infinite alternate}
+.b2{background:var(--brand2);top:40px;right:-110px;opacity:calc(var(--blob) * .7);animation:d2 20s ease-in-out infinite alternate}
+.b3{background:#ff6fb5;bottom:-170px;left:20%;opacity:calc(var(--blob) * .45);animation:d3 18s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(60px,40px) scale(1.12)}}
+@keyframes d2{to{transform:translate(-50px,60px) scale(.92)}}
+@keyframes d3{to{transform:translate(50px,-30px) scale(1.15)}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}}
